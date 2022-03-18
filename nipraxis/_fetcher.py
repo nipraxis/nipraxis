@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pooch
 
-DATA_VERSION='0.1'
+DATA_VERSION='0.2'
 
 
 def get_registry():
