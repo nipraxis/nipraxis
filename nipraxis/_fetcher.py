@@ -2,7 +2,6 @@
 """
 
 import os
-import shutil
 from pathlib import Path
 
 import pooch
@@ -38,33 +37,27 @@ NIPRAXIS_REPO = pooch.create(
 #: Path to local cache, if present
 LOCAL_CACHE = os.environ.get('NIPRAXIS_LOCAL_CACHE')
 if LOCAL_CACHE is not None:
-    LOCAL_CACHE = Path(LOCAL_CACHE)
+    LOCAL_CACHE = Path(LOCAL_CACHE).resolve()
 
 
-def copy_from_cache(url, output_file, pooch_obj):
-    base_url = pooch_obj.base_url
-    if not url.startswith(base_url):
-        return False
-    rel_url = url[len(base_url):]
-    pth = LOCAL_CACHE / rel_url
-    if not pth.is_file():
-        return False
-    print('Copying from cache')
-    shutil.copyfile(pth, output_file)
-    return True
-
-
-def cache_downloader(url, output_file, pooch_obj):
-    """
-    Download, checking for local cache
-    """
-    if LOCAL_CACHE and copy_from_cache(url, output_file, pooch_obj):
-        return
-    1/0
-    pooch.downloaders.choose_downloader(url)(url, output_file, pooch_obj)
+def from_local_cache(rel_url):
+    known_hash = NIPRAXIS_REPO.registry.get(rel_url)
+    if known_hash is None:
+        return None
+    pth = LOCAL_CACHE / DATA_VERSION / rel_url
+    action, verb = pooch.core.download_action(pth, known_hash)
+    if action == 'update':
+        pooch.utils.get_logger().info(
+            f"'{rel_url}' in '{LOCAL_CACHE}/{DATA_VERSION}' "
+            "but hash does not match; looking in local cache / registry.")
+        return None
+    if action == 'fetch':
+        return str(pth)
 
 
 def fetch_file(fname):
-    """ Fetch data file from registry
+    """ Fetch data file from local cache, or registry
     """
-    return NIPRAXIS_REPO.fetch(fname, downloader=cache_downloader)
+    if (cache_fname := from_local_cache(fname)):
+        return cache_fname
+    return NIPRAXIS_REPO.fetch(fname)
