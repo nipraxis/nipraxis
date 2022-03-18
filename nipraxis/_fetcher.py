@@ -30,7 +30,8 @@ def get_registry():
             'ds114_sub009_highres_moved.img': 'md5:95d1b9542a9adebb87e3948c33af478d',
             'ds114_sub009_t2r1_cond.txt': 'md5:5cb29aed9c9f330afe1af7e69f8aad18',
             'new_cond.txt': 'md5:b40dc95801267932a9f273f02ac05d1e',
-            'stimuli.py': 'md5:bced020691fa6408e082e4a1cc090104',
+            'ds114_sub009_t2r1_conv.txt':
+            'md5:839eadd4533af9d8aef0cf8d623ab139',
         },
         # The name of an environment variable that can overwrite the cache path.
         env="NIPRAXIS_LOCAL_CACHE",
