@@ -8,6 +8,10 @@ Tools for working with the [Nipraxis course](https://nipraxis.org)
 pip install nipraxis
 ```
 
+## Data
+
+Data at <https://github.com/nipraxis/nipraxis-data/>
+
 ## Usage
 
 ```python
