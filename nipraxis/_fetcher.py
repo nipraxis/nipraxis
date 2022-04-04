@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pooch
 
-DATA_VERSION='0.2'
+DATA_VERSION='0.3'
 
 
 def get_registry():
@@ -32,6 +32,9 @@ def get_registry():
             'new_cond.txt': 'md5:b40dc95801267932a9f273f02ac05d1e',
             'ds114_sub009_t2r1_conv.txt':
             'md5:839eadd4533af9d8aef0cf8d623ab139',
+            'ds107_sub001_highres.nii': 'md5:fd733636ae8abe8f0ffbfadedd23896c',
+            'anatomical.txt': 'md5:3c91c588e2bbf69d7c59c80d32988fb4',
+            '24719.f3_beh_CHYM.csv': 'md5:ac1f4df5697bf356b2b060afd383430e',
         },
         # The name of an environment variable that can overwrite the cache path.
         env="NIPRAXIS_LOCAL_CACHE",
