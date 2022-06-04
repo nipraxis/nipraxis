@@ -12,7 +12,7 @@ Additional modules are:
 * `rotations``: functions to work with roations in 3D.
 """
 
-__version__ = '0.3.3'
+__version__ = '0.3.4'
 
 from ._fetcher import fetch_file
 from . import stimuli
