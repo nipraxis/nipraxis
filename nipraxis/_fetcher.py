@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pooch
 
-DATA_VERSION='0.3'
+DATA_VERSION = '0.4'
 
 
 def get_registry():
@@ -21,6 +21,7 @@ def get_registry():
         registry={
             'ds107_sub012_highres.nii': 'md5:316b0635a4280f65e1ca27ecb34264d6',
             'ds107_sub012_t1r2.nii': 'md5:4546a0a3f7041261b80b56b60cd54126',
+            'ds108_sub001_t1r1.nii': '6378302aad7bc006bfb48fa973866e68',
             'ds114_sub009_highres.nii': 'md5:95d1b9542a9adebb87e3948c33af478d',
             'ds114_sub009_highres_brain_222.nii': 'md5:615aad84d5b96085601fe306af614564',
             'ds114_sub009_t2r1.nii': 'md5:709fcca8d33ddb7d0b7d501210c8f51c',
