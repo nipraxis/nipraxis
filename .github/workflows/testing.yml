@@ -12,15 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-          - python-version: 3.7
-            pip_dep_var: "-r test-requirements.txt"
-          - python-version: 3.8
-            pip_dep_var: "-r test-requirements.txt"
-          - python-version: 3.9
-            pip_dep_var: "-r test-requirements.txt"
-          - python-version: "3.10"
-            pip_dep_var: "-r test-requirements.txt"
+        python-version: [3.7, 3.8, 3.9, "3.10"]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -30,10 +22,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install specified dependencies
-        run: pip install $PIP_DEPENDS
-        env:
-          PIP_DEPENDS:  ${{ matrix.pip_dep_var }}
       - name: Install coverage dependencies
         run: |
           pip install pytest-cov
