@@ -46,7 +46,8 @@ NIPRAXIS_REGISTRY = get_registry()
 
 
 def from_staging_cache(rel_url, staging_cache):
-    if not (known_hash := NIPRAXIS_REGISTRY.registry.get(rel_url)):
+    known_hash = NIPRAXIS_REGISTRY.registry.get(rel_url)
+    if not known_hash:
         return None
     pth = Path(staging_cache).resolve() / DATA_VERSION / rel_url
     action, verb = pooch.core.download_action(pth, known_hash)
@@ -63,6 +64,8 @@ def fetch_file(rel_url):
     """ Fetch data file from local cache, or registry
     """
     staging_cache = os.environ.get('NIPRAXIS_STAGING_CACHE')
-    if staging_cache and (cache_fname := from_staging_cache(rel_url, staging_cache)):
-        return cache_fname
+    if staging_cache:
+        cache_fname = from_staging_cache(rel_url, staging_cache)
+        if cache_fname:
+            return cache_fname
     return NIPRAXIS_REGISTRY.fetch(rel_url)
