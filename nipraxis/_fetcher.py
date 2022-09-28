@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pooch
 
-DATA_VERSION = '0.4'
+DATA_VERSION = '0.5'
 
 
 def get_registry():
@@ -23,13 +23,24 @@ def get_registry():
             'ds107_sub012_t1r2.nii': 'md5:4546a0a3f7041261b80b56b60cd54126',
             'ds108_sub001_t1r1.nii': 'md5:6378302aad7bc006bfb48fa973866e68',
             'ds114_sub009_highres.nii': 'md5:95d1b9542a9adebb87e3948c33af478d',
-            'ds114_sub009_highres_brain_222.nii': 'md5:615aad84d5b96085601fe306af614564',
+            'ds114_sub009_highres_brain_222.nii':
+            'md5:615aad84d5b96085601fe306af614564',
             'ds114_sub009_t2r1.nii': 'md5:709fcca8d33ddb7d0b7d501210c8f51c',
-            'mni_icbm152_t1_tal_nlin_asym_09a_masked_222.nii': 'md5:6d0615d6581c9f9e17f6916da480fd2e',
+            'ds114_sub009_highres_brain_mask.nii':
+            'md5:3f5d42c8220f1f65e5d62f7eed6f7ef3',
+            'mni_icbm152_t1_tal_nlin_asym_09a.nii':
+            'md5:1ea8f4f1e41bc17a94602e48141fdbc8',
+            'mni_icbm152_t1_tal_nlin_asym_09a_mask.nii':
+            'md5:250bcb6ea9d20242e5d18736cb2793fd',
+            'mni_icbm152_t1_tal_nlin_asym_09a_masked_222.nii':
+            'md5:6d0615d6581c9f9e17f6916da480fd2e',
             'camera.txt': 'md5:e596928a61c4332252d4eb1f0b6dab1e',
-            'ds114_sub009_highres_moved.hdr': 'md5:b12b3d9db549d68b984ace0b95920603',
-            'ds114_sub009_highres_moved.img': 'md5:95d1b9542a9adebb87e3948c33af478d',
-            'ds114_sub009_t2r1_cond.txt': 'md5:5cb29aed9c9f330afe1af7e69f8aad18',
+            'ds114_sub009_highres_moved.hdr':
+            'md5:b12b3d9db549d68b984ace0b95920603',
+            'ds114_sub009_highres_moved.img':
+            'md5:95d1b9542a9adebb87e3948c33af478d',
+            'ds114_sub009_t2r1_cond.txt':
+            'md5:5cb29aed9c9f330afe1af7e69f8aad18',
             'new_cond.txt': 'md5:b40dc95801267932a9f273f02ac05d1e',
             'ds114_sub009_t2r1_conv.txt':
             'md5:839eadd4533af9d8aef0cf8d623ab139',
