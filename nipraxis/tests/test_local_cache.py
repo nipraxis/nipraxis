@@ -1,10 +1,10 @@
 """ Test local cache
 """
+
 import shutil
 from hashlib import sha1
 
-from nipraxis import fetch_file
-import nipraxis._fetcher as nipf
+import nipraxis._fetcher as npxf
 
 CAMERA_HASH = 'af7257977f30797d4b3ea7dd15fa362d4fe8c37e'
 
@@ -20,13 +20,13 @@ def test_camera(tmp_path, monkeypatch):
     staging_cache = tmp_path / 'nipraxis-staging'
     monkeypatch.delenv("NIPRAXIS_STAGING_CACHE", raising=False)
     monkeypatch.setenv("NIPRAXIS_LOCAL_CACHE", str(local_cache))
-    monkeypatch.setattr('nipraxis._fetcher.REGISTRY',
-                        nipf.get_registry(nipf.CONFIG))
-    fname = fetch_file('camera.txt')
+    fetcher = npxf.Fetcher(npxf._CONFIG)
+    monkeypatch.setattr('nipraxis._fetcher.fetch_file', fetcher.fetch_file)
+    fname = npxf.fetch_file('camera.txt')
     assert fname.startswith(str(local_cache))
     monkeypatch.setenv("NIPRAXIS_STAGING_CACHE", str(staging_cache))
-    fname = fetch_file('camera.txt')
+    fname = npxf.fetch_file('camera.txt')
     assert fname.startswith(str(local_cache))
     shutil.move(local_cache, staging_cache)
-    fname = fetch_file('camera.txt')
+    fname = npxf.fetch_file('camera.txt')
     assert fname.startswith(str(staging_cache))
