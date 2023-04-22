@@ -20,7 +20,8 @@ def test_camera(tmp_path, monkeypatch):
     staging_cache = tmp_path / 'nipraxis-staging'
     monkeypatch.delenv("NIPRAXIS_STAGING_CACHE", raising=False)
     monkeypatch.setenv("NIPRAXIS_LOCAL_CACHE", str(local_cache))
-    monkeypatch.setattr('nipraxis._fetcher.NIPRAXIS_REGISTRY',  nipf.get_registry())
+    monkeypatch.setattr('nipraxis._fetcher.REGISTRY',
+                        nipf.get_registry(nipf.CONFIG))
     fname = fetch_file('camera.txt')
     assert fname.startswith(str(local_cache))
     monkeypatch.setenv("NIPRAXIS_STAGING_CACHE", str(staging_cache))
