@@ -10,7 +10,7 @@ classifiers = ["License :: OSI Approved :: BSD License",
 dynamic = ["version", "description"]
 readme = "README.md"
 license = {file = "LICENSE"}
-dependencies = ["pooch", "numpy"]
+dependencies = ["pooch", "numpy", 'yaml']
 
 [project.optional-dependencies]
 test = ["pytest"]
