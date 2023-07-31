@@ -23,7 +23,7 @@ def test_camera(tmp_path, monkeypatch):
     monkeypatch.delenv("NIPRAXIS_STAGING_CACHE", raising=False)
     monkeypatch.setenv("NIPRAXIS_LOCAL_CACHE", str(local_cache))
     fetcher = unscrewed.Fetcher(npxf._config_file)
-    monkeypatch.setattr('nipraxis._fetcher.fetch_file', fetcher.fetch_file)
+    monkeypatch.setattr('nipraxis._fetcher.fetch_file', fetcher)
     fname = npxf.fetch_file('camera.txt')
     assert fname.startswith(str(local_cache))
     monkeypatch.setenv("NIPRAXIS_STAGING_CACHE", str(staging_cache))
